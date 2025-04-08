@@ -3,7 +3,9 @@
 <suite name="All Test Suite">
     <groups>
         <run>
-            <include name="prod"></include>
+            <include name="prod">
+
+            </include>
         </run>
     </groups>
     <test verbose="2" preserve-order="true" name="APIAutomationFrameworkATB8x">

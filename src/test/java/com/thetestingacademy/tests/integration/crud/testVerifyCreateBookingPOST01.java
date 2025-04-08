@@ -9,6 +9,7 @@ import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -16,12 +17,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class testVerifyCreateBookingPOST01 extends BaseTest {
 
 //    Additional Info
-//    @Owner("Nayan")
-//    @Link(name="Link to TC",url="dummyurl")
-//    @Issue("JIRA_Dummy")
+    @Owner("Nayan")
+    @Link(name="Link to TC",url="dummyurl")
+    @Issue("JIRA_Dummy")
     @Description("Verify that POST request is working fine.")
     @Test
-    public void testVerifyCreateBookingPOST01(){
+    public void test_VerifyCreateBookingPOST01(){
+
 requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL);
 
 response= RestAssured.given(requestSpecification)
@@ -36,12 +38,24 @@ validatableResponse.statusCode(200);
 
         BookingResponse bookingResponse = payloadManager.bookingResponseJava(response.asString());
         //AssertJ
+        //assertActions.verifyStringkey(bookingResponse.getBooking().getFirstname(),"Hema");
         assertThat(bookingResponse.getBookingid()).isPositive().isNotZero().isNotNull();
         assertThat(bookingResponse.getBooking().getFirstname()).isEqualTo("Hema");
         assertThat(bookingResponse.getBooking().getLastname()).isEqualTo("Tiwari");
 
         //TestNG assertions
         assertActions.verifyStatusCode(response,200);
+        assertActions.verifyResponseBody(bookingResponse.getBooking().getFirstname(),"Hema","Verify first name");
+        Assert.assertEquals(bookingResponse.getBooking().getFirstname(),"Hema");
+        Assert.assertEquals(bookingResponse.getBooking().getLastname(),"Tiwari");
     }
-
+    @Test
+    public void test_VerifyCreateBookingPOST02(){}
+    @Test
+    public void test_VerifyCreateBookingPOST03(){}
+    @Test
+    public void test_VerifyCreateBookingPOST04(){}
+    @Test
+    public void test_VerifyCreateBookingPOST05(){}
 }
+

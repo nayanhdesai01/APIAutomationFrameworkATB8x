@@ -48,7 +48,7 @@ public class BaseTest {
 //Get the Token
         response = requestSpecification.contentType(ContentType.JSON)
                 .body(payload).when().post();
-//String Extraction
+//Token String Extraction
         String token = payloadManager.getTokenFromJson(response.asString());
 
         return token;

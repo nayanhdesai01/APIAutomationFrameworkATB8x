@@ -8,6 +8,7 @@ public class Auth {
     }
 
     public String getUsername() {
+
         return username;
     }
 
@@ -16,6 +17,7 @@ public class Auth {
     }
 
     public String getPassword() {
+
         return password;
     }
 
